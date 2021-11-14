@@ -133,3 +133,39 @@ select * from film natural join inventory;
 
 -- How many distinct actors last names are there?
 select count(distinct last_name) from actor;
+
+
+-- The actor HARPO WILLIAMS was accidentally entered in the actor table as  WILLIAMS. Write a query to fix the record.
+
+update
+	actor
+set
+	first_name = 'GROUCHO'
+where
+	first_name = 'HARPO'
+	
+	
+	SHOW CREATE TABLE address;
+
+
+--  Use subqueries to display all actors who appear in the film Alone Trip.
+select
+	concat(first_name, ' ', last_name)
+from
+	actor a
+where
+	actor_id in (
+	select
+		actor_id
+	from
+		film_actor fa
+	where
+		film_id in
+(
+		select
+			film_id
+		from
+			film
+		where
+			title like '%Alone Trip%'))
+			
